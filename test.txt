@@ -1,90 +1,254 @@
-<link rel="stylesheet" href="https://materializecss.com/css/ghpages-materialize.css" type="text/css">
-
 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
-<div class="row sectionBlockLayout" style="display: flex; flex-wrap: wrap; text-align: left; min-height: 100px; padding: 8px; margin: 0px;">
-  <div class="container" style="display: flex; flex-wrap: wrap;">
-    <div class="col-md-12 columnBlockLayout" style="display: flex; flex-direction: column;">
 
-      <!-- <link rel="stylesheet" href="/ghpages-materialize.css" type="text/css"> -->
-      <script type="text/javascript">
-        var flowResponse = {
-          data: [],
-          typeahead: []
-        };
-        var typeaheaddd = [];
-        fetch('https://prod-64.westeurope.logic.azure.com:443/workflows/2ce9048b8897418089c69fa3a6ee7b02/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QFJ4XvmjNHiqdi1uJhB-8ak52FXn4uH5EREm6LCZfpY')
-          .then(response => response.json())
-          .then(json => {
-            flowResponse = json;
-            typeaheaddd = json.typeahead;
-          });
-        var substringMatcher = function() {
-          return function findMatches(q, cb) {
-            var matches, substringRegex;
-            // an array that will be populated with substring matches
-            matches = [];
-            // regex used to determine if a string contains the substring `q`
-            substrRegex = new RegExp(q, 'i');
-            // iterate through the pool of strings and for any string that
-            // contains the substring `q`, add it to the `matches` array
-            $.each(typeaheaddd, function(i, obj) {
-              if (substrRegex.test(obj.Address)) {
-                matches.push(obj);
-              }
-            });
-            cb(matches);
+<div class="row sectionBlockLayout" style="display: flex; flex-wrap: wrap; text-align: left; min-height: 100px; padding: 8px; margin: 0px;">
+    <div class="container" style="display: flex; flex-wrap: wrap;">
+      <div class="col-md-12 columnBlockLayout" style="display: flex; flex-direction: column;">
+       
+        
+        
+        
+       
+        <script type="text/javascript">
+          
+          var flowResponse={
+           
+            typeahead:[]
           };
-        };
-        var center = {
-          Lat: 0,
-          Long: 0
-        };
-        window.addEventListener("load", function() {
-          if (navigator.geolocation) {
-            var position = navigator.geolocation.getCurrentPosition(function(position) {
-              center.Lat = position.coords.latitude;
-              center.Long = position.coords.longitude;
-              //GetMap();
+          var typeaheaddd=[];
+          var contacts=[];
+          fetch('https://prod-121.westeurope.logic.azure.com:443/workflows/28e0ae1dc3e44e14803c3063f6bf0102/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=I5-JWY_QC-w3u_r6z5U4bnZIQ1FvS_FrAjqQ2U8rMDk')
+            .then(response => response.json())
+            .then(json => {
+                flowResponse = json; typeaheaddd=json.typeahead;contacts=json.contacts
             });
-          } else {
-            alert("Geolocation is not supported by this browser.");
-          }
-        });
-      </script>
-      <div id="the-basics"><input type="text" placeholder="Your address" class="typeahead" style="width: 396px; height: 30px; padding-top: 8px; padding-right: 12px; padding-bottom: 8px; padding-left: 12px; font-size: 24px; line-height: 30px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; outline-color: initial; outline-style: none; outline-width: initial; background-color: rgb(255, 255, 255);"></div>
-      <div id="contactCard" class="card large" style="visibility: hidden;">
-        <div class="card-image"><img src="https://materializecss.com/images/sample-1.jpg"><span id="cardTitle" class="card-title">Title</span></div>
-        <div class="card-content"><span id="cardContentText">Information.</span></div>
-        <div id="cardLink" class="card-action">
-        </div>
-      </div>
-      <script>
-        $('#the-basics .typeahead').typeahead({
-          hint: true,
-          highlight: true,
-          minLength: 1
-        }, {
-          display: 'Address',
-          limit: 10,
-          source: substringMatcher(),
-          templates: {
-            empty: [
-              '<div class="empty-message">',
-              'Cant find any result',
-              '</div>'
-            ].join('\n'),
-            suggestion: function(data) {
-              return '<p><strong>' + data.Address + '</strong> -' + data.Zone + '</p>';
+        
+        
+            
+            var substringMatcher = function() {
+            return function findMatches(q, cb) {
+              var matches, substringRegex;
+              // an array that will be populated with substring matches
+              matches = [];
+              // regex used to determine if a string contains the substring `q`
+              substrRegex = new RegExp(q, 'i');
+          
+              // iterate through the pool of strings and for any string that
+              // contains the substring `q`, add it to the `matches` array
+              $.each(typeaheaddd, function(i, obj) {
+                if (substrRegex.test(obj.Address)) {
+                  matches.push(obj);
+                }
+              });
+              cb(matches);
+            };
+          };
+        
+          var center = {
+            Lat: 0,
+            Long: 0
+          };
+          window.addEventListener("load", function() {
+           
+            if (navigator.geolocation) {
+              var position = navigator.geolocation.getCurrentPosition(function(position) {
+                center.Lat = position.coords.latitude;
+                center.Long = position.coords.longitude;
+                //GetMap();
+              });
+            } else {
+              alert("Geolocation is not supported by this browser.");
             }
-          }
-        });
-        $('.typeahead').on('typeahead:selected', function(evt, item) {
-          $("#contactCard").css("visibility", "visible");
-          $("#cardTitle").html("" + item.Address);
-          $("#cardContentText").html("" + item.Address);
-        });
-      </script>
+          });        
+           
+        </script>
+                
+          
+        <style>
+        
+        /* site theme */
+        /* ---------- */
+        
+        .title {
+          margin: 20px 0 0 0;
+          font-size: 64px;
+        }
+        
+        .example {
+          padding: 30px 0;
+        }
+        
+        .example-name {
+          margin: 20px 0;
+          font-size: 32px;
+        }
+        
+        .demo {
+          position: relative;
+          *z-index: 1;
+          margin: 50px 0;
+        }
+        
+        .typeahead,
+        .tt-query,
+        .tt-hint {
+          width: 396px;
+          height: 30px;
+          padding: 8px 12px;
+          font-size: 24px;
+          line-height: 30px;
+          border: 2px solid #ccc;
+          -webkit-border-radius: 8px;
+             -moz-border-radius: 8px;
+                  border-radius: 8px;
+          outline: none;
+        }
+        
+        .typeahead {
+          background-color: #fff;
+        }
+        
+        .typeahead:focus {
+          border: 2px solid #0097cf;
+        }
+        
+        .tt-query {
+          -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+             -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+                  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        }
+        
+        .tt-hint {
+          color: #999
+        }
+        
+        .tt-menu {
+          width: 422px;
+          margin: 12px 0;
+          padding: 8px 0;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          -webkit-border-radius: 8px;
+             -moz-border-radius: 8px;
+                  border-radius: 8px;
+          -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+             -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+                  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        }
+        
+        .tt-suggestion {
+          padding: 3px 20px;
+          font-size: 18px;
+          line-height: 24px;
+        }
+        
+        .tt-suggestion:hover {
+          cursor: pointer;
+          color: #fff;
+          background-color: #0097cf;
+        }
+        
+        .tt-suggestion.tt-cursor {
+          color: #fff;
+          background-color: #0097cf;
+        
+        }
+        
+        .tt-suggestion p {
+          margin: 0;
+        }
+        
+        .gist {
+          font-size: 14px;
+        }
+        
+        /* example specific styles */
+        /* ----------------------- */
+        
+        #custom-templates .empty-message {
+          padding: 5px 10px;
+         text-align: center;
+        }
+        
+        #multiple-datasets .league-name {
+          margin: 0 20px 5px 20px;
+          padding: 3px 0;
+          border-bottom: 1px solid #ccc;
+        }
+        
+        #scrollable-dropdown-menu .tt-menu {
+          max-height: 150px;
+          overflow-y: auto;
+        }
+        
+        #rtl-support .tt-menu {
+          text-align: right;
+        }
+        </style>
+        
+        
+        <div id="the-basics">
+            <input class="typeahead" type="text" placeholder="Your address">
+        </div>
+        
+        <div class="card large" id="contactCard" style="visibility: hidden;">
+            <div class="card-image">
+              <img src="https://materializecss.com/images/sample-1.jpg">
+              <span class="card-title" id="cardTitle">Title</span>
+            </div>
+            <div class="card-content">
+              <span id="cardContentText">Information.</span>
+            </div>
+            <div class="card-action" id="cardLink">
+              
+            </div>
+          </div>
+          
+        <script>
+                   
+            $('#the-basics .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                display: 'Address',
+                limit:10,
+                source: substringMatcher(),
+                templates: {
+                    empty: [
+                            '<div class="empty-message">',
+                                'Cant find any result',
+                            '</div>'
+                            ].join('\n'),   
+                    suggestion: function(data) {
+                        return '<p><strong>' + data.Address + '</strong> -'+ data.Zone+'</p>';
+                        }
+                }
+            });
+        
+            $('.typeahead').on('typeahead:selected', function(evt, item) {
+                 $("#contactCard").css("visibility", "visible");
+                 $("#cardTitle").html("" + item.Address);         
+                 $("#cardContentText").html("" + contacts[0].Text);
+
+                 var found_names = $.grep(contacts, function(v) {                    
+                    return true;//v.Zone === item.Zone;
+                 });
+                 console.log(found_names);
+
+             });
+          
+        </script>
+        
+        
+
+
+
+
+
+      </div>
     </div>
   </div>
-</div>
+  
