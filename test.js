@@ -1,3 +1,4 @@
+alert("hi hi ");
 function MyAlert()
 {
 
